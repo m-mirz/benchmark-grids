@@ -143,3 +143,56 @@ power flow and a harder one than a lightly loaded feeder.
    (MATPOWER's `makeYbus` conventions). All four cases: largest mismatch
    under 2e-10 MVA, i.e. the `.m` file is the same power-flow problem as
    power-grid-model's.
+
+## `pglib/`
+
+Twelve AC optimal-power-flow cases from PGLib-OPF, the IEEE PES task
+force's OPF benchmark library, used by grid-bench's OPF benchmark. Copied
+unmodified (byte-identical to the release), in the release's own layout:
+typical operating conditions at the top level, congested (`api/`) and small
+angle-difference (`sad/`) variants below.
+
+- **Upstream**: https://github.com/power-grid-lib/pglib-opf
+- **Release**: `v23.07` (2023-07-24), commit
+  `dc6be4b2f85ca0e776952ec22cbd4c22396ea5a3`
+- **Archive**: `https://codeload.github.com/power-grid-lib/pglib-opf/tar.gz/refs/tags/v23.07`,
+  sha256 `f1421ce22f0a7b9de8a8b2111776b496348220192ad24aace392c3bf608706c2`
+- **Also copied**: `BASELINE.md` (the release's reference results, from
+  which the reference objectives below are taken) and `LICENSE`.
+
+| File | Buses | Generators | Branches | Reference AC objective ($/h) |
+|---|---|---|---|---|
+| `pglib_opf_case14_ieee.m` | 14 | 5 | 20 | 2.1781e+03 |
+| `pglib_opf_case118_ieee.m` | 118 | 54 | 186 | 9.7214e+04 |
+| `pglib_opf_case300_ieee.m` | 300 | 69 | 411 | 5.6522e+05 |
+| `pglib_opf_case1354_pegase.m` | 1,354 | 260 | 1,991 | 1.2588e+06 |
+| `pglib_opf_case2869_pegase.m` | 2,869 | 510 | 4,582 | 2.4628e+06 |
+| `pglib_opf_case9241_pegase.m` | 9,241 | 1,445 | 16,049 | 6.2431e+06 |
+| `api/pglib_opf_case14_ieee__api.m` | 14 | 5 | 20 | 5.9994e+03 |
+| `api/pglib_opf_case118_ieee__api.m` | 118 | 54 | 186 | 2.4961e+05 |
+| `api/pglib_opf_case300_ieee__api.m` | 300 | 69 | 411 | 6.8604e+05 |
+| `sad/pglib_opf_case14_ieee__sad.m` | 14 | 5 | 20 | 2.7768e+03 |
+| `sad/pglib_opf_case118_ieee__sad.m` | 118 | 54 | 186 | 1.0516e+05 |
+| `sad/pglib_opf_case300_ieee__sad.m` | 300 | 69 | 411 | 5.6570e+05 |
+
+All are plain data (no MATLAB code), use quadratic polynomial costs
+(`gencost` model 2, 3 coefficients), and give every branch a thermal limit
+(`rateA > 0`) and angle-difference limits (`angmin`, `angmax`).
+
+The reference objectives are PGLib's own baseline: PowerModels.jl v0.19.9
+with Ipopt 3.14.4 (HSL ma27), AC polar formulation. They are locally
+optimal solutions, not proven global optima, and `BASELINE.md` gives them to
+five significant digits only, so they cannot resolve a relative difference
+below about 5e-5.
+
+### Licensing
+
+PGLib-OPF's data is licensed under Creative Commons Attribution 4.0
+International (`pglib/LICENSE`); each file's header names its original
+source and copyright holders, which that license requires to be kept.
+
+### Updating
+
+Download a newer release archive from the URL pattern above, copy the same
+files from it, and update the release, commit, archive hash and the table's
+reference objectives (from that release's `BASELINE.md`).

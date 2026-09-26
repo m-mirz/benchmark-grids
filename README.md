@@ -16,4 +16,9 @@ its licensing.
 - `generated/` — 4 synthetic radial MV/LV distribution grids (1,004 to 29,840
   buses) in MATPOWER format, from power-grid-model's grid generator;
   regenerate with `scripts/generate_distribution.py`.
+- `pglib/` — 12 AC optimal-power-flow cases from
+  [PGLib-OPF](https://github.com/power-grid-lib/pglib-opf) v23.07 (14 to
+  9,241 buses; typical, congested and small angle-difference variants),
+  with the release's reference objectives (`BASELINE.md`), used by
+  grid-bench's OPF benchmark.
 - `scripts/` — the generator, the exporter and its check, the code evaluator.
