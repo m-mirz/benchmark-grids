@@ -1,0 +1,17 @@
+{
+  "crac-factory": "CracImplFactory",
+  "default-monitored-line-side" : "monitor-lines-on-side-one",
+  "ra-usage-limits-per-instant": [{
+    "instant": "curative",
+    "max-ra" : 2,
+    "max-tso" : 2147483647,
+    "max-topo-per-tso" : { },
+    "max-pst-per-tso" : { },
+    "max-ra-per-tso" : { }
+  }],
+  "extensions": {
+    "CimCracCreatorParameters": {
+      "timestamp": "2021-04-30T22:30+02:00"
+    }
+  }
+}
