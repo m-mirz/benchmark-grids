@@ -21,4 +21,8 @@ its licensing.
   9,241 buses; typical, congested and small angle-difference variants),
   with the release's reference objectives (`BASELINE.md`), used by
   grid-bench's OPF benchmark and gridoxide's OPF tests.
+- `powsybl-open-rao/` — [OpenRAO](https://github.com/powsybl/powsybl-open-rao)'s
+  Cucumber suite with every network, CRAC and parameter file it names, plus
+  UCTE, IIDM and CRAC files from its unit tests (MPL-2.0), used by
+  gridoxide's importer and remedial action optimization tests.
 - `scripts/` — the generator, the exporter and its check, the code evaluator.

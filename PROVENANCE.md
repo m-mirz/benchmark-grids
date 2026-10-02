@@ -200,3 +200,46 @@ source and copyright holders, which that license requires to be kept.
 Download a newer release archive from the URL pattern above, copy the same
 files from it, and update the release, commit, archive hash and the table's
 reference objectives (from that release's `BASELINE.md`).
+
+## `powsybl-open-rao/`
+
+Test resources from powsybl-open-rao, the open-source remedial action
+optimizer (OpenRAO), used by gridoxide's UCTE and IIDM importers and its
+remedial action optimization tests. Copied unmodified (byte-identical to the
+commit below) except for `converted/`.
+
+- **Upstream**: https://github.com/powsybl/powsybl-open-rao
+- **Commit**: `46d286f4f1d88ede9077911d62b6cbe0e5484121` on `main`
+  (2026-08-17, `git describe`: `v7.3.0-24-g46d286f4f`). Not a release: it is
+  the commit gridoxide's expectations were measured against.
+- **Archive**: `https://codeload.github.com/powsybl/powsybl-open-rao/tar.gz/46d286f4f1d88ede9077911d62b6cbe0e5484121`,
+  sha256 `d42bd4a15853c5eadc96c1b6187b7d698f7392eb30453a878b8b17bd4e3dc446`
+  when downloaded on 2026-10-02 (GitHub does not guarantee archive bytes are
+  stable; the commit is the authoritative pin).
+
+| Path | Upstream path | What it is |
+|---|---|---|
+| `features/` | `tests/src/test/resources/com/powsybl/openrao/tests/features/` | OpenRAO's Cucumber suite, 109 `.feature` files, whole. |
+| `files/` | `tests/src/test/resources/files/` | Everything those features name (networks, CRACs, `RaoParameters`, GLSKs, reference results), 821 files, whole. Step text such as `epic15/SL_ep15us3case1.json` resolves under `files/crac/`, `files/cases/` and `files/configurations/`. |
+| `modules/` | same path, relative to the repository root | 11 files from individual modules' unit-test resources: five CRACs spanning the JSON format's versions, three UCTE and three IIDM networks. |
+| `converted/` | — | **Not upstream.** Three IIDM networks converted from the UCTE files of the same name by pypowsybl, for checking a UCTE and an IIDM importer against each other. |
+
+The Cucumber suite is copied whole, not just the scenarios a consumer runs,
+so that selecting more scenarios never requires changing this repository.
+
+`converted/` was produced with
+`pp.network.load("<name>.uct").save("<name>.xiidm", format="XIIDM")` from
+`files/cases/` and `modules/` copies of the same networks (IIDM schema 1_17,
+2026-08-18). The pypowsybl version was not recorded.
+
+### Licensing
+
+Mozilla Public License 2.0 (`powsybl-open-rao/LICENSE`, copied from the
+repository root), including `converted/`, which are derived works. MPL-2.0 is
+a per-file copyleft: it covers these files and not the code that reads them.
+
+### Updating
+
+Download the archive for a newer commit, replace `features/`, `files/` and the
+`modules/` files at their upstream paths, and update the commit, date and
+archive hash above. Regenerate `converted/` if the UCTE sources changed.
