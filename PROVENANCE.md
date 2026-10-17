@@ -243,3 +243,41 @@ a per-file copyleft: it covers these files and not the code that reads them.
 Download the archive for a newer commit, replace `features/`, `files/` and the
 `modules/` files at their upstream paths, and update the commit, date and
 archive hash above. Regenerate `converted/` if the UCTE sources changed.
+
+## `dynawo/`
+
+Two example cases from Dynawo, RTE's open-source time-domain simulator, used
+by gridoxide's Dynawo `.dyd`/`.par` reader and its RMS dynamics reference
+tests. Copied unmodified (byte-identical to the commit below); only
+`reference_setpoint.csv` is renamed.
+
+- **Upstream**: https://github.com/dynawo/dynawo
+- **Commit**: `6c7e694ab654296b539ebce5a5f9871c8b3a1852` on `master`
+  (2026-10-05). Not a release. The pin was recovered by comparing blob hashes
+  after the files had been copied: this is the newest commit at which all
+  eight files match. The very next commit that touches them (`11ddacc`,
+  2026-10-16) renames the `.crv` bus voltage variables and rewrites the
+  `.dyd` `OMEGA_REF` connections of `ieee14/`.
+
+| Path | Upstream path | What it is |
+|---|---|---|
+| `ieee14/IEEE14.{dyd,par,crv,iidm}` | `examples/DynaWaltz/IEEE14/IEEE14_GeneratorDisconnections/` | The IEEE 14-bus case: its IIDM network, model architecture, parameters and recorded curves. Five machines, three `GeneratorSynchronousFourWindings` and two `GeneratorSynchronousThreeWindings`. |
+| `kundur13/KundurExample13_SetPoint.dyd`, `KundurExample13.{par,crv}` | `examples/DynaSwing/Kundur_Example13/` | Kundur's *Power System Stability and Control* Example 13.2: one machine with no regulators against an infinite bus over two parallel lines, a bolted fault and a line trip. |
+| `kundur13/reference_setpoint.csv` | `examples/DynaSwing/Kundur_Example13/reference/outputs_SetPoint/curves/curves.csv` | Dynawo's own solver's trajectories for that case, as committed upstream. |
+
+The IEEE 14 case's own timeline records `PMIN : activation` on two
+generators: its governors hit their minimum-power limits. A consumer that
+does not model those limits should expect it to diverge from Dynawo for that
+reason.
+
+### Licensing
+
+Mozilla Public License 2.0 (`dynawo/LICENSE`, copied from the repository
+root's `LICENSE.txt`). Copyright (c) RTE, 2015-2019 or 2015-2020 as each
+file's own header states.
+
+### Updating
+
+Copy the same paths from a newer commit and update the commit and date above.
+Check `ieee14/` against its consumers first: upstream renames variables in
+these files.
