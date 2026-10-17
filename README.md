@@ -25,4 +25,8 @@ its licensing.
   Cucumber suite with every network, CRAC and parameter file it names, plus
   UCTE, IIDM and CRAC files from its unit tests (MPL-2.0), used by
   gridoxide's importer and remedial action optimization tests.
+- `dynawo/` — two [Dynawo](https://github.com/dynawo/dynawo) example cases
+  (IEEE 14 and Kundur Example 13.2) with Dynawo's own reference curves for
+  the second (MPL-2.0), used by gridoxide's Dynawo reader and RMS dynamics
+  tests.
 - `scripts/` — the generator, the exporter and its check, the code evaluator.
