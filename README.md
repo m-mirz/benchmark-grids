@@ -16,9 +16,9 @@ its licensing.
 - `generated/` — 4 synthetic radial MV/LV distribution grids (1,004 to 29,840
   buses) in MATPOWER format, from power-grid-model's grid generator;
   regenerate with `scripts/generate_distribution.py`.
-- `pglib/` — 15 AC optimal-power-flow cases from
+- `pglib/` — 21 AC optimal-power-flow cases from
   [PGLib-OPF](https://github.com/power-grid-lib/pglib-opf) v23.07 (3 to
-  9,241 buses; typical, congested and small angle-difference variants),
+  30,000 buses; typical, congested and small angle-difference variants),
   with the release's reference objectives (`BASELINE.md`), used by
   grid-bench's OPF benchmark and gridoxide's OPF tests.
 - `powsybl-open-rao/` — [OpenRAO](https://github.com/powsybl/powsybl-open-rao)'s

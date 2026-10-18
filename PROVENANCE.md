@@ -146,7 +146,7 @@ power flow and a harder one than a lightly loaded feeder.
 
 ## `pglib/`
 
-Fifteen AC optimal-power-flow cases from PGLib-OPF, the IEEE PES task
+Twenty-one AC optimal-power-flow cases from PGLib-OPF, the IEEE PES task
 force's OPF benchmark library, used by grid-bench's OPF benchmark and by
 gridoxide's OPF tests. Copied
 unmodified (byte-identical to the release), in the release's own layout:
@@ -172,6 +172,12 @@ angle-difference (`sad/`) variants below.
 | `pglib_opf_case1354_pegase.m` | 1,354 | 260 | 1,991 | 1.2588e+06 |
 | `pglib_opf_case2869_pegase.m` | 2,869 | 510 | 4,582 | 2.4628e+06 |
 | `pglib_opf_case9241_pegase.m` | 9,241 | 1,445 | 16,049 | 6.2431e+06 |
+| `pglib_opf_case10000_goc.m` | 10,000 | 2,089 | 13,193 | 1.3540e+06 |
+| `pglib_opf_case10480_goc.m` | 10,480 | 777 | 18,559 | 2.3146e+06 |
+| `pglib_opf_case13659_pegase.m` | 13,659 | 4,092 | 20,467 | 8.9480e+06 |
+| `pglib_opf_case19402_goc.m` | 19,402 | 971 | 34,704 | 1.9778e+06 |
+| `pglib_opf_case24464_goc.m` | 24,464 | 1,591 | 37,816 | 2.6295e+06 |
+| `pglib_opf_case30000_goc.m` | 30,000 | 3,526 | 35,393 | 1.1423e+06 |
 | `api/pglib_opf_case14_ieee__api.m` | 14 | 5 | 20 | 5.9994e+03 |
 | `api/pglib_opf_case118_ieee__api.m` | 118 | 54 | 186 | 2.4961e+05 |
 | `api/pglib_opf_case300_ieee__api.m` | 300 | 69 | 411 | 6.8604e+05 |
